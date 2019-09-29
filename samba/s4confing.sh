@@ -106,14 +106,14 @@ function novo_usuario(){
     clear
     echo
     read -p "Informe o nome do novo usuário: " nuser
-    samba-tool user create ${nuser}
+    samba-tool user create ${nuser} 2> ./logs4/logs4.txt
     status
     menu_users
 }
 function delete_user(){
     clear
     read -p "Informe o nome do usuário a ser deletado: " duser
-    samba-tool user delete ${duser} && rm -r /home/samba/${duser}
+    samba-tool user delete ${duser} 2> ./logs4/logs4.txt && rm -r /home/samba/${duser} 2> ./logs4/logs4.txt
     status
     menu_users
 }
@@ -128,21 +128,29 @@ function novo_password(){
     echo -e "${am}Trocar senha do usuário e forca a troca no Próximo Login.${ne}\n"
     read -p "Informe o nome do usuário: " tuser
     read -p "Informe a nova senha: " npass
-    samba-tool user setpassword ${tuser} --newpassword=${npass}.Mudar.Senha --must-change-at-next-login
+    samba-tool user setpassword ${tuser} --newpassword=${npass}.Mudar.Senha --must-change-at-next-login 2> ./logs4/logs4.txt
+    status
+    menu_users
+}
+funtion add_membro(){
+    clear
+    read -p "Digite o nome do grupo que receberá o usuário: " ngroup
+    read -p "Digite o nome no usuário que será adicionado ao grupo ${am}${ngroup}${ne}: " nuser 
+    samba-tool group addmembers $ngroup $nuser 2> ./logs4/logs4.txt
     status
     menu_users
 }
 function desabilitar_user(){
     clear
     read -p "Informe o nome do usuário a ser desativado: " duser
-    samba-tool user disable ${duser}
+    samba-tool user disable ${duser} 2> ./logs4/logs4.txt
     status
     menu_users
 }
 function habilitar_user(){
     clear
     read -p "Informe o nome do usuário a ser habilitado: " huser
-    samba-tool user enable ${huser}
+    samba-tool user enable ${huser} 2> ./logs4/logs4.txt
     status
     menu_users
 }
@@ -152,14 +160,14 @@ function novo_grupo(){
     clear
     read -p "Informe o nome do novo grupo: " ngrupo
     read -p "Descrição do grupo: " desc
-    samba-tool group add ${ngrupo} --description=${desc}
+    samba-tool group add ${ngrupo} --description=${desc} 2> ./logs4/logs4.txt
     status
     menu_groups
 }
 function deletar_grupo(){
     clear
     read -p "Informe o nome do grupo a ser deletado: " dgrupo
-    samba-tool group delete ${dgrupo}
+    samba-tool group delete ${dgrupo} 2> ./logs4/logs4.txt
     status
     menu_groups
 }
@@ -173,7 +181,7 @@ function grupo_add_grupo(){
     clear
     read -p "Nome do grupo que receberá o outro grupo: " ngrupo1
     read -p "Nome do grupo a ser adicionado: " ngrupo2
-    samba-tool group addmembers ${ngrupo1} ${ngrupo2}
+    samba-tool group addmembers ${ngrupo1} ${ngrupo2} 2> ./logs4/logs4.txt
     status
     menu_groups
 }
@@ -181,7 +189,7 @@ function remo_membro(){
     clear
     read -p "Nome do usuário que será removido: " nuser
     read -p "Nome do grupo em que o usuário esta localizado:  " ngrupo
-    samba-tool group removemembers ${ngrupo} ${nuser}
+    samba-tool group removemembers ${ngrupo} ${nuser} 2> ./logs4/logs4.txt
     status
     menu_groups
 }
@@ -192,4 +200,15 @@ function listar_membros(){
     status
     menu_groups
 }
+if [ -d logs4 ]; then
+    clear
+    echo -e "Log....\n"
+    status
+else
+    clear
+    echo -e "Criando log....\n"
+    mkdir logs4
+    status
+fi
+clear
 menu_principal
