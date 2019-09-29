@@ -1,4 +1,13 @@
 #!/bin/bash
+#   NOME:              s4config.sh
+#   VERSÃO:            1.0
+#   DESCRIÇÃO:         Configura usuários e grupos no samba 4.
+#   DATA DA CRIAÇÃO:   29/09/2019
+#   ESCRITO POR:       Reinaldo silva e Renato Cavalcante.
+#   E-MAIL:            reinaldo0101@gmail.com, fagante08@gmail.com
+#   DISTRO:            Debian GNU/Linux 10 (Buster)
+#   LICENÇA:           GPLv3
+#   PROJETO:           https://github.com/elizot/samba_script/
 #Cores
 vm="\033[0;31m"
 vd="\033[0;32m"
