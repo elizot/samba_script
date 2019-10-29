@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 #   NOME:              s4config.sh
 #   VERSÃO:            1.0
 #   DESCRIÇÃO:         Configura usuários e grupos no samba 4.
@@ -75,7 +75,7 @@ elif [ $sn = "N" ]; then
 fi
 
 echo -e "\nInstalando pacotes necessarios para o Samba4 AD DC...\n"
-installer samba krb5-user krb5-config winbind libpam-winbind libnss-winbind net-tools
+installer samba krb5-user krb5-config winbind libpam-winbind libnss-winbind net-tools ldb-tools
 
 echo -e "Provisione o Samba AD DC para o seu dominio...\n"
 systopdesable samba-ad-dc.service smbd.service nmbd.service winbind.service

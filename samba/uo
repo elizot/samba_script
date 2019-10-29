@@ -1,0 +1,19 @@
+dn: ou=1UO,dc=IFPB,dc=COM
+changetype= add
+objectClass= top
+objectClass= organizationalunit
+description= blablabla
+
+dn: ou=2UO,dc=IFPB,dc=COM
+changetype= add
+objectClass= top
+objectClass= organizationalunit
+description= bla2bla2bla2
+
+dn: ou=3UO,ou=1UO,dc=IFPB,dc=COM
+changetype= add
+objectClass= top
+objectClass= organizationalunit
+description= bla3bla3bla3
+
+

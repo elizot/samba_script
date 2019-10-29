@@ -1,0 +1,7 @@
+ERROR(ldb): Failed to add user 'renato':  - 0000052D: Constraint violation - check_password_restrictions: the password is too short. It should be equal or longer than 7 characters!
+ERROR(ldb): Failed to add user 'teste':  - Entry CN=teste,CN=Users,DC=ifpb,DC=com already exists
+ERROR(exception): Failed to add members "dsad" to group "renato" - Unable to find group "renato"
+  File "/usr/lib/python2.7/dist-packages/samba/netcmd/group.py", line 242, in run
+    add_members_operation=True)
+  File "/usr/lib/python2.7/dist-packages/samba/samdb.py", line 269, in add_remove_group_members
+    raise Exception('Unable to find group "%s"' % groupname)
